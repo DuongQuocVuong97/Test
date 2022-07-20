@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="crm_customer_request_tree_view">
+            <field name="name">crm_customer_request.tree</field>
+            <field name="model">crm.customer.request</field>
+            <field name="arch" type="xml">
+                <tree string="crm customer request Tree">
+                    <field name="name"/>
+                    <field name="opportunity_id"/>
+                    <field name="product_id"/>
+                    <field name="date"/>
+                    <field name="description"/>
+                    <field name="qty"/>
+                    <field name="qty_ordered"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="crm_customer_request_form_view">
+            <field name="name">crm_customer_request.form</field>
+            <field name="model">crm.customer.request</field>
+            <field name="arch" type="xml">
+                <form string="crm customer request Form" delete="false">
+                    <sheet>
+                        <group>
+                            <div>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="opportunity_id"/>
+                                    <field name="product_id"/>
+                                    <field name="date"/>
+                                    <field name="description"/>
+                                    <field name="qty"/>
+                                    <field name="qty_ordered"/>
+                                </group>
+                            </div>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="crm_customer_request_list_action">
+            <field name="name">Crm Customer Request</field>
+            <field name="res_model">crm.customer.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_content_smiling_face">Create the crm customer request
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_crm_so_menu" name="Crm Customer Request"/>
+        <!-- menu categories -->
+        <menuitem id="crm_so_menu" name="Crm Customer Request"
+                  parent="main_crm_so_menu"/>
+        <!-- actions -->
+        <menuitem id="crm_customer_request_menu" name="Crm Customer Request" parent="crm_so_menu"
+                  action="crm_customer_request_list_action"/>
+
+
+    </data>
+</odoo>
