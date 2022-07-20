@@ -14,11 +14,11 @@ class crm_customer_request(models.Model):
     product_id = fields.Many2one('product.template', required=True, index=True)
     date = fields.Date(string="Date", default=fields.Date.today(), required=True)
     qty = fields.Float('Quantity', required=True, digits='Product UoS', default=1)
-    total_qty = fields.Many2many('sale.order')
+    total_qty = fields.Many2many('sale.order.line')
     qty_ordered = fields.Float(string="Quantity Ordered", compute='_qty_ordered')
 
     @api.depends("total_qty")
     def _qty_ordered(self):
         for r in self:
-            r.qty_ordered = r.total_qty.amount_total
+            r.qty_ordered = r.total_qty.product_uom_qty
 
