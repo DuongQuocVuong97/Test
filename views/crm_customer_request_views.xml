@@ -11,7 +11,6 @@
                     <field name="date"/>
                     <field name="description"/>
                     <field name="qty"/>
-                    <field name="qty_ordered"/>
                 </tree>
             </field>
         </record>
@@ -31,7 +30,7 @@
                                     <field name="date"/>
                                     <field name="description"/>
                                     <field name="qty"/>
-                                    <field name="qty_ordered"/>
+<!--                                    <field name="qty_ordered"/>-->
                                 </group>
                             </div>
                         </group>

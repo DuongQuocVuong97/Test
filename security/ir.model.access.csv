@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_crm_so_crm_so,crm_so.crm_so,model_crm_so_crm_so,base.group_user,1,1,1,1
+access_crm_customer_request_manager,crm_customer_request_manager,model_crm_customer_request,group_crm_customer_request_manager,1,1,1,1
+access_crm_customer_request_user,crm_customer_request_user,model_crm_customer_request,group_crm_customer_request_user,1,0,0,0
+access_crm_lead_manager,crm_lead_manager,model_crm_lead,group_crm_lead_manager,1,1,1,1
+access_crm_lead_user,crm_lead_user,model_crm_lead,group_crm_lead_user,1,0,0,0
+

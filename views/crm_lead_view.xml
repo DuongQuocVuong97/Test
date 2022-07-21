@@ -1,0 +1,56 @@
+<odoo>
+    <record id="crm_lead_form_view2" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="request_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_customer_request_form_view_2" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <form string="crm customer request Form" delete="false">
+                    <sheet>
+                        <group>
+                            <div>
+                                <group>
+                                    <field name="name"/>
+                                    <field name="opportunity_id"/>
+                                    <field name="product_id"/>
+                                    <field name="date"/>
+                                    <field name="description"/>
+                                    <field name="qty"/>
+                                </group>
+                            </div>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+        </field>
+
+    </record>
+
+
+    <record model="ir.actions.act_window" id="crm_lead_list_action">
+        <field name="name">crm_lead</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_content_smiling_face">Create the order
+            </p>
+        </field>
+    </record>
+
+
+    <!-- actions -->
+    <menuitem id="crm_lead_menu" name="Crm Lead"
+              parent="crm_so_menu"
+              action="crm_lead_list_action"/>
+</odoo>
