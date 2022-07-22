@@ -4,48 +4,39 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
-                <group>
-                    <field name="name"/>
-                    <field name="opportunity_id"/>
-                    <field name="product_id"/>
-                    <field name="date"/>
-                    <field name="description"/>
-                    <field name="qty"/>
-                </group>
-                <label for="request_ids"/>
-                <field name="request_ids"/>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="total_qty"></field>
+            </xpath>
+        </field>
+    </record>
+     <record id="crm_lead_view_tree_activity_2" model="ir.ui.view">
+        <field name="name">crm.lead.tree.opportunity.next.activity</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_tree_activity"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_deadline']" position="after">
             </xpath>
         </field>
     </record>
 
-<!--    <record id="crm_customer_request_form_view_2" model="ir.ui.view">-->
-<!--        <field name="name">crm.lead.form</field>-->
-<!--        <field name="model">crm.lead</field>-->
-<!--        <field name="inherit_id" ref="crm.crm_lead_view_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <xpath expr="//notebook" position="inside">-->
-<!--                <group>-->
-<!--                <tree string="crm customer request Tree">-->
-<!--                    <field name="name"/>-->
-<!--                    <field name="opportunity_id"/>-->
-<!--                    <field name="product_id"/>-->
-<!--                    <field name="date"/>-->
-<!--                    <field name="description"/>-->
-<!--                    <field name="qty"/>-->
-<!--                </tree>-->
-<!--                </group>-->
-<!--                <label for="request_id"/>-->
-<!--                <field name="request_id"/>-->
-<!--            </xpath>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="crm_customer_request_form_view_2" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <tree string="Customer Request">
+                    <field name="request_ids"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
 
 
     <record model="ir.actions.act_window" id="crm_lead_list_action">
         <field name="name">crm_lead</field>
         <field name="res_model">crm.lead</field>
-        <field name="view_mode">form</field>
+        <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_content_smiling_face">Create the order
             </p>

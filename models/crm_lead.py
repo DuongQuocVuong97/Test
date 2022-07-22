@@ -1,18 +1,27 @@
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
 class Crm_lead(models.Model):
     _inherit = "crm.lead"
 
-    request_ids = fields.One2many('crm.customer.request',string="Customer Request")
+    request_ids = fields.One2many('crm.customer.request', 'opportunity_id', string="Request ID")
     name = fields.Char(string='Title', required=True)
     description = fields.Text()
     opportunity_id = fields.Many2one('crm.lead', required=True, index=True)
     product_id = fields.Many2one('product.template', required=True, index=True)
     date = fields.Date(string="Date", default=fields.Date.today(), required=True)
-    qty = fields.Float('Quantity', required=True, digits='Product UoS', default=1)
+    qty = fields.Float(string='Quantity', required=True, default=1)
     qty_ordered = fields.Float(string="Quantity Ordered", compute='_qty_ordered')
+    total_qty = fields.Float(string="Sales", compute="_compute_total_qty", readonly=True)
+
+    @api.depends("qty")
+    def _compute_total_qty(self):
+        total = 0
+        for r in self.qty:
+            total += r.qty
+        self.total_qty = total
+
     # state = fields.Selection([
     #     ('new', 'New'),
     #     ('qualified', 'Qualified'),
