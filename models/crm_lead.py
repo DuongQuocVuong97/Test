@@ -1,12 +1,10 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 
 
 class Crm_lead(models.Model):
     _inherit = "crm.lead"
 
     request_ids = fields.One2many('crm.customer.request', 'opportunity_id', string="Request ID")
-    name = fields.Char(string='Title', required=True)
     description = fields.Text()
     opportunity_id = fields.Many2one('crm.lead', required=True, index=True)
     product_id = fields.Many2one('product.template', required=True, index=True)
@@ -15,10 +13,10 @@ class Crm_lead(models.Model):
     qty_ordered = fields.Float(string="Quantity Ordered", compute='_qty_ordered')
     total_qty = fields.Float(string="Sales", compute="_compute_total_qty", readonly=True)
 
-    @api.depends("qty")
+    @api.depends("request_ids")
     def _compute_total_qty(self):
         total = 0
-        for r in self.qty:
+        for r in self.request_ids:
             total += r.qty
         self.total_qty = total
 
